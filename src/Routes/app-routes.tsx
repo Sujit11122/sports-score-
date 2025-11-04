@@ -3,7 +3,8 @@ import HomePage from "../pages/home-page"
 import ProfilePage from "../pages/profile-page"
 import MatchPage from "../pages/match-page"
 import BlogPage from "../pages/blog-page"
-
+import Login from "../components/login"
+import Signup from "../components/signup"
 function AppRoutes() {
   
 
@@ -14,6 +15,8 @@ function AppRoutes() {
            <Route path="/profile" element ={<ProfilePage/>}/>
            <Route path="/match" element ={<MatchPage/>}/>
            <Route path="/blog" element ={<BlogPage/>}/>
+           <Route path="/login" element ={<Login/>}/>
+           <Route path="/signup" element ={<Signup/>}/>
           </Routes> </Router>
 
   )
