@@ -1,12 +1,14 @@
-import { Button, Group, Image, List, Paper, TextInput,} from "@mantine/core";
+import { Anchor, Button, Group, Image, List, Paper, TextInput,} from "@mantine/core";
 import logo from '../assets/logo.png'
 import { IoSearch } from "react-icons/io5";
- function Navbar() {
+
+function Navbar() {
+
     return (
         <Paper shadow="xs" p='md' style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }} >
             <Group>
                 <Image src={logo} alt="App logo" style={{ height: '30px', width: 'auto' }}/>
-                <List>SportsApp</List>
+                <Anchor href="/" style={{textDecoration:'none'}} >SportsApp</Anchor >
                 <Group gap="md">
                     <List> Football</List>
                     <List> Basket Ball</List>
@@ -17,8 +19,8 @@ import { IoSearch } from "react-icons/io5";
             <Group gap='sm'>
                 <IoSearch />
                 <TextInput type="text" placeholder="Search" />
-                <Button> Login </Button>
-                <Button variant="light"> Sign up</Button>
+                <Button component="a" href='/login'>  {"Login"} </Button>
+                <Button component="a" href="/signup" variant="light"> Sign up</Button>
             </Group>
 
         </Paper>

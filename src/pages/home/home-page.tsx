@@ -1,6 +1,6 @@
 import { BackgroundImage, Box, Button, Card, Center, Group, Image, Text, } from "@mantine/core";
-import soccer from '../assets/Home screen.jpg'
-import mma from '../assets/MMA.jpg'
+import soccer from '../../assets/Home screen.jpg'
+import mma from '../../assets/MMA.jpg'
 function HomePage() {
     return (
         <Box>

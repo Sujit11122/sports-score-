@@ -8,7 +8,7 @@ function App() {
   return (
     <MantineProvider>
       <Navbar />
-      <AppRoutes />
+      <AppRoutes/>
       <Footer />
     </MantineProvider>
 

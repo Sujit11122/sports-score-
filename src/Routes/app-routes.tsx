@@ -1,10 +1,10 @@
 import { BrowserRouter as Router,Route,  Routes } from "react-router-dom"
-import HomePage from "../pages/home-page"
-import ProfilePage from "../pages/profile-page"
-import MatchPage from "../pages/match-page"
-import BlogPage from "../pages/blog-page"
-import Login from "../components/login"
-import Signup from "../components/signup"
+import HomePage from "../pages/home/home-page"
+import ProfilePage from "../pages/profile/profile-page"
+import MatchPage from "../pages/match/match-page"
+import BlogPage from "../pages/blog/blog-page"
+import Login from "../pages/login/login-page"
+import Signup from "../pages/signup/signup-page"
 function AppRoutes() {
   
 
