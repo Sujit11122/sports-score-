@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Card,
   Paper,
   PasswordInput,
   TextInput,
@@ -9,9 +10,32 @@ import {
 import { FaUser } from "react-icons/fa";
 import { IoMdLock } from "react-icons/io";
 import { useDisclosure } from "@mantine/hooks";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 function Login() {
+const navigate = useNavigate();
   const [visible, { toggle }] = useDisclosure(false);
+   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const handleLogin = () => {
+    if (!username || !password) {
+    alert("Please fill all fields!");
+    return;
+  }
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const user = users.find(
+      (user: { username: string; password: string }) =>
+        user.username === username && user.password === password
+    );
+    if (!user) {
+      alert("Invalid username or password");
+      return;
+    }
+    localStorage.setItem("currentUser", JSON.stringify(user));
+    console.log("AFTER LOGIN currentUser =", localStorage.getItem("currentUser"));
+    alert("Login successful!");
+    navigate("/"); // after login, navigate to home page
+  };
 
   return (
     <Paper
@@ -22,9 +46,11 @@ function Login() {
         gap: "10px",
         backgroundColor: "gray",
         justifyContent: "right",
+        height:"90vh",
+        background: "linear-gradient(135deg, #eef2ff, #e0e7ff)",
       }}
     >
-      <form
+      <Card
         style={{
           display: "flex",
           flexDirection: "column",
@@ -34,7 +60,10 @@ function Login() {
           marginTop: "100px",
           gap: "10px",
           marginLeft: "auto",
-        }}
+          backdropFilter: "blur(12px)",
+          background: "rgba(255, 255, 255, 0.55)",
+           border: "1px solid rgba(255, 255, 255, 0.3)"
+        }} radius="lg"
       >
         <Title>Welcome Back, </Title>
         <Title>Athlete</Title>
@@ -46,6 +75,7 @@ function Login() {
           label="Username "
           placeholder="Enter your username"
           id="username"
+           onChange={(e) => setUsername(e.target.value)}
           leftSection={<FaUser />}
           withAsterisk
           radius="md"
@@ -53,13 +83,14 @@ function Login() {
         <PasswordInput
           label="Password"
           placeholder="Enter your password"
+          onChange={(e) => setPassword(e.target.value)}
           visible={visible}
           onVisibilityChange={toggle}
           radius="md"
           withAsterisk
           leftSection={<IoMdLock />}
         />
-        <Button radius="md" style={{ boxShadow: "revert" }}>
+        <Button radius="md" style={{ boxShadow: "revert" }} onClick={handleLogin} >
           Log In
         </Button>
         <Title order={3} style={{ color: "blue" }} fw={400}>
@@ -75,12 +106,12 @@ function Login() {
 
           <Title order={3} fw={400}>
             {" "}
-            <Link to="/signup" style={{ color: "blue" }}>
+            <Link to="/signup" style={{ color: "blue", textDecoration: "none" }}>
               Sign Up
             </Link>{" "}
           </Title>
         </Box>
-      </form>
+      </Card>
     </Paper>
   );
 }
